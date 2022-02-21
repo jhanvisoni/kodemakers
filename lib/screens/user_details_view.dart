@@ -13,10 +13,12 @@ class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProfileController());
-
     /// h and w is the responsive height and width of screen
     /// sp is the responsive font size
+
+    /// Profile controller initialization
+    final controller = Get.put(ProfileController());
+
     return WillPopScope(
       onWillPop: () {
         if (!controller.isSubmitting.value) {
@@ -142,7 +144,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  /// show city bottom sheet
+  /// show state bottom sheet
   dynamic showStateBottomSheet(
       {required BuildContext context, required ProfileController controller}) {
     return showModalBottomSheet(
@@ -180,6 +182,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  /// show city bottom sheet
   dynamic showCityBottomSheet(
       {required BuildContext context, required ProfileController controller}) {
     return showModalBottomSheet(
@@ -217,6 +220,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  /// show imagePicker bottom sheet
   dynamic showImagePickerSheet(
       {required BuildContext context, required ProfileController controller}) {
     return showModalBottomSheet(
