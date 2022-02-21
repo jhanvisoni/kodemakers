@@ -8,7 +8,6 @@ class ProfilePicture extends StatelessWidget {
   final controller = Get.find<ProfileController>();
   final double height;
   final double width;
-
   final double borderRadius;
   final EdgeInsetsGeometry margin;
   final VoidCallback onTap;
@@ -37,7 +36,7 @@ class ProfilePicture extends StatelessWidget {
           child: ClipRRect(
             child: Obx(() {
               return controller.selectedImagePath.value == ''
-                  ? Image.network(controller.ProfilePic.value, loadingBuilder:
+                  ? Image.network(controller.profilePic.value, loadingBuilder:
                       (context, Widget child,
                           ImageChunkEvent? loadingProgress) {
                       if (loadingProgress == null) return child;

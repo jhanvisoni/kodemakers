@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class AppDialog {
   static final _cupertinoTitleTextStyle =
-      Get.textTheme.headline6?.copyWith(color: Colors.blue);
+      Get.textTheme.headline6?.copyWith(color: Colors.black);
   static final _cupertinoDescriptionTextStyle =
       Get.textTheme.headline6?.copyWith(color: Colors.white);
   static final _cupertinoButtonTextStyle =
@@ -21,12 +21,7 @@ class AppDialog {
     color: Colors.black,
   );
 
-  /// show Error Dialog. Default dialog is [AlertDialog] for android and
-  /// [CupertinoAlertDialog] dialog for iOS. default title 'Error' and
-  /// default description 'Something went wrong'.
-  /// default button text is 'close' and callback of button can be handled using [onPressed].
-  /// default button click will close the dialog only
-  static void showErrorDialog({
+  static void showMeassageDialog({
     String title = 'Message',
     String description = 'Something went wrong',
     String buttonText = 'Close',

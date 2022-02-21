@@ -19,13 +19,14 @@ import '../constants/app_constants.dart';
 import '../constants/endpoint.dart';
 
 class ProfileController extends GetxController {
+  /// TextEditing controlllers
   final nameController = TextEditingController();
   final stateController = TextEditingController();
   final cityController = TextEditingController();
 
   var selectedState = ''.obs;
   var selectedCity = ''.obs;
-  var ProfilePic = ''.obs;
+  var profilePic = ''.obs;
 
   var isLoading = true.obs;
   var isSubmitting = false.obs;
@@ -44,11 +45,12 @@ class ProfileController extends GetxController {
   @override
   Future<void> onInit() async {
     await getUserData();
-    await fetchSate();
+    await getStateList();
     super.onInit();
   }
 
-  Future<void> fetchSate() async {
+  /// returns State data from api
+  Future<void> getStateList() async {
     StateResponse response = await apiAdapter.getStateResponse();
     stateList.assignAll(response.data!);
   }
@@ -61,6 +63,7 @@ class ProfileController extends GetxController {
     cityList.assignAll(cityResponse.data!);
   }
 
+  /// this method will update the state onselect state from dropdown
   void updateState(
       {required String currentState, required int stateCode}) async {
     selectedState.value = currentState;
@@ -69,6 +72,7 @@ class ProfileController extends GetxController {
     getCityList(stateCode: stateCode);
   }
 
+  /// this method will update the city onselect city from dropdown
   void updateCity({required String currentState}) async {
     selectedCity.value = currentState;
     cityController.text = currentState;
@@ -84,12 +88,13 @@ class ProfileController extends GetxController {
     nameController.text = userData.name!;
     stateController.text = userData.state!;
     cityController.text = userData.city!;
-    ProfilePic.value = userData.imgUrl!;
+    profilePic.value = userData.imgUrl!;
 
     updateState(stateCode: userData.stateId!, currentState: userData.state!);
     updateCity(currentState: userData.city!);
   }
 
+  /// Pick Image from camera and gallery method
   Future<void> getImagePicker({required ImageSource source}) async {
     var pickedFile =
         await imagePicker.pickImage(source: source, imageQuality: 50);
@@ -99,6 +104,7 @@ class ProfileController extends GetxController {
     }
   }
 
+  /// on submit data method
   Future<void> onSubmitButtonClicked() async {
     var name = nameController.text;
     var city = cityController.text;
@@ -109,13 +115,13 @@ class ProfileController extends GetxController {
     var file = File(selectedImage);
 
     if (nameController.text.isEmpty) {
-      return AppDialog.showErrorDialog(title: 'Please enter name');
+      return AppDialog.showMeassageDialog(title: 'Please enter name');
     }
     if (stateController.text.isEmpty) {
-      return AppDialog.showErrorDialog(title: 'Please select state');
+      return AppDialog.showMeassageDialog(title: 'Please select state');
     }
     if (cityController.text.isEmpty) {
-      return AppDialog.showErrorDialog(title: 'Please select city');
+      return AppDialog.showMeassageDialog(title: 'Please select city');
     }
 
     isSubmitting.value = true;
@@ -128,7 +134,7 @@ class ProfileController extends GetxController {
           stateName: state,
           stateId: stateId!);
       isSubmitting.value = false;
-      AppDialog.showErrorDialog(
+      AppDialog.showMeassageDialog(
         description: response.message!,
         onPressed: () {
           Get.back();
@@ -136,7 +142,6 @@ class ProfileController extends GetxController {
         },
         buttonText: 'Okay',
       );
-      print("RRRRR${response.message}");
     } else {
       response = await _updateProfile(
           name: name,
@@ -146,10 +151,9 @@ class ProfileController extends GetxController {
           stateId: stateId!,
           profileImage: file);
       isSubmitting.value = false;
-      AppDialog.showErrorDialog(
+      AppDialog.showMeassageDialog(
         description: response.message!,
         onPressed: () {
-          //Go.to(const ProfilePage());
           Get.back();
           Get.back();
         },
@@ -158,6 +162,7 @@ class ProfileController extends GetxController {
     }
   }
 
+  /// private methods
   Future<UserUpadateResponse> _updateProfile({
     required String name,
     required String cityName,

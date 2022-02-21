@@ -4,15 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+/// TextField with icon custom widget
 class AppEditTextWithIcon extends StatelessWidget {
-  //static final numberOnly = FilteringTextInputFormatter.allow(RegExp(r'[0-9]'));
   final String titleText;
   final String hintText;
   final TextInputType keyboardType;
   final int? maxLength;
   final List<TextInputFormatter>? inputFormatters;
   final TextEditingController? controller;
-  //final ValueChanged<void> validator;
   final ValueChanged<String>? onChanged;
   final String? iconPath;
   final InputDecoration? decoration;
@@ -43,6 +42,8 @@ class AppEditTextWithIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// h and w is the responsive height and width of screen
+    /// sp is the responsive font size
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w).copyWith(top: 16.h),
       child: Column(
@@ -100,7 +101,7 @@ class AppEditTextWithIcon extends StatelessWidget {
                       ),
                     ),
                     suffixIcon: IconButton(
-                      splashRadius: 24.r,
+                      splashRadius: 24,
                       color: Colors.black,
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       icon: const Icon(Icons.arrow_circle_down_outlined),
@@ -116,6 +117,7 @@ class AppEditTextWithIcon extends StatelessWidget {
   }
 }
 
+/// TextField custom widget
 class AppEditText extends StatelessWidget {
   static final numberOnly = FilteringTextInputFormatter.allow(RegExp(r'[0-9]'));
   final String? titleText;
@@ -146,9 +148,11 @@ class AppEditText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// h and w is the responsive height and width of screen
+    /// sp is the responsive font size
     return Padding(
       padding:
-          padding ?? EdgeInsets.symmetric(horizontal: 16.w).copyWith(top: 16.h),
+          padding ?? EdgeInsets.symmetric(horizontal: 50.w).copyWith(top: 16.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,6 +15,8 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
 
+    /// h and w is the responsive height and width of screen
+    /// sp is the responsive font size
     return WillPopScope(
       onWillPop: () {
         if (!controller.isSubmitting.value) {
@@ -44,6 +45,8 @@ class ProfilePage extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          /// h and w is the responsive height and width of screen
+
                           SizedBox(
                             height: 50.h,
                           ),
@@ -62,6 +65,8 @@ class ProfilePage extends StatelessWidget {
                                         color: const Color(0xffAEAEAE),
                                       ),
                                       shape: BoxShape.circle),
+
+                                  /// Profile picture widget
                                   child: ProfilePicture(
                                     height: 150.h,
                                     width: 150.h,
@@ -74,14 +79,16 @@ class ProfilePage extends StatelessWidget {
                                   )),
                             ),
                           ),
-                          //Spacer(),
 
+                          /// TextField widget
                           AppEditText(
                             titleText: 'Full Name',
                             hintText: 'Enter your name',
                             controller: controller.nameController,
                             keyboardType: TextInputType.name,
                           ),
+
+                          /// TextField with icon widget
                           AppEditTextWithIcon(
                             titleText: 'State',
                             hintText: 'Select your state',
@@ -94,6 +101,8 @@ class ProfilePage extends StatelessWidget {
                                   controller: controller, context: context);
                             },
                           ),
+
+                          /// TextField with icon widget
                           AppEditTextWithIcon(
                             titleText: 'City',
                             hintText: 'Select your city',

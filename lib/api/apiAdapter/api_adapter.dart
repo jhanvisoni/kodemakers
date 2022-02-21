@@ -11,40 +11,6 @@ class ApiAdapter {
   final dio = Dio();
 
   ApiAdapter() {
-    // todo: comment this out in production
-
-    // dio.interceptors.add(
-    //   PrettyDioLogger(
-    //     requestHeader: true,
-    //     requestBody: true,
-    //     responseHeader: true,
-    //   ),
-    // );
-
-    // dio.interceptors.add(
-    //   RetryInterceptor(
-    //     requestRetry: DioConnectivityRequestRetry(
-    //       dio: dio,
-    //       connectivity: Connectivity(),
-    //     ),
-    //   ),
-    // );
-
-    // dio.interceptors.add(
-    //   InterceptorsWrapper(
-    //     onRequest: (RequestOptions options) async {
-    //       // set the token
-    //       SharedPreferences prefs = await SharedPreferences.getInstance();
-    //       String token = prefs.getString(KEY_USER_TOKEN) ?? '';
-    //
-    //       if (token.isNotEmpty) {
-    //         // print("TOKEN NetworkCommon :$token");
-    //         //options.headers["Authorizations"] = "Bearer " + token;
-    //       }
-    //       return options;
-    //     },
-    //   ),
-    // );
     dio.options.connectTimeout = 20000;
     dio.options.receiveTimeout = 20000;
     _retrofitService = RetrofitService(dio);
@@ -62,7 +28,6 @@ class ApiAdapter {
     return _retrofitService.updateDataWithoutImage(body);
   }
 
-  /// update user details
   Future<UserUpadateResponse> updateUserDetails({
     required String name,
     required String cityName,

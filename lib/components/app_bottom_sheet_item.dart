@@ -15,6 +15,8 @@ class BottomSheetItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// h and w is the responsive height and width of screen
+    /// sp is the responsive font size
     return Material(
       color: tileColor.withOpacity(0.2),
       child: ListTile(

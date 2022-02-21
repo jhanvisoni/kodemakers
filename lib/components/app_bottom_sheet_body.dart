@@ -8,7 +8,7 @@ class BottomSheetBody extends StatelessWidget {
   final double height;
   final Widget? content;
   final bool shrinkWrap;
-  BottomSheetBody({
+  const BottomSheetBody({
     Key? key,
     this.title = 'this is title',
     required this.height,
@@ -19,6 +19,8 @@ class BottomSheetBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// h and w is the responsive height and width of screen
+    /// sp is the responsive font size
     return Material(
       color: Colors.white,
       shape: const RoundedRectangleBorder(

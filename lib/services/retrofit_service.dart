@@ -15,21 +15,22 @@ part 'retrofit_service.g.dart';
 abstract class RetrofitService {
   factory RetrofitService(Dio dio, {String baseUrl}) = _RetrofitService;
 
-  /// user login method
+  /// returns state
   @FormUrlEncoded()
   @GET(epState)
   Future<StateResponse> stateList();
 
-  /// user details method
+  /// returns user details
   @FormUrlEncoded()
   @GET(epGetUserDetails)
   Future<UserDetailsResponse> userDetails();
 
-  /// get home screen profile data
+  /// update user data
   @FormUrlEncoded()
   @POST(epUpdateUserDetails)
   Future<UserUpadateResponse> updateDataWithoutImage(@Body() dynamic body);
 
+  /// update user data with profile picture using multipart
   @POST(epUpdateUserDetails)
   @MultiPart()
   Future<UserUpadateResponse> updateProfile(
